@@ -17,7 +17,6 @@ import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 import { PinContainer } from "@/components/ui/3d-pin";
-import AvatarDemo from "@/components/layout/avatarDemo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface CarouselProps {

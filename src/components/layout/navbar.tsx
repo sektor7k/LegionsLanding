@@ -16,9 +16,8 @@ import {
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import ModeToggle from "@/components/ModeToggle";
 import { LogoIcon } from "../landing-page/Icons";
-import { UserNav } from "./user-nav";
+
 
 interface RouteProps {
   href: string;
@@ -114,7 +113,7 @@ export default function Navbar() {
                   </a>
                   <a
                     rel="noreferrer noopener"
-                    href="/"
+                    href=""
                     target="_blank"
                     className={`border ${buttonVariants({ variant: "default" })}`}
                   >
