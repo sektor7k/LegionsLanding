@@ -1,19 +1,25 @@
 'use client';
 import React, { useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useGLTF, useAnimations, OrbitControls } from '@react-three/drei';
 
 function Model() {
   const group = useRef();
-  const { scene, animations } = useGLTF('/maskot3.glb'); 
+  const { scene, animations } = useGLTF('/animation6.glb'); 
   const { actions } = useAnimations(animations, group); 
-
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
       const actionNames: string[] = Object.keys(actions); 
 
-      actions[actionNames[0]]?.play();
+      // Tüm animasyonları 2x hızında oynatıyoruz
+      actionNames.forEach((name) => {
+        const action = actions[name];
+        if (action) {
+          action.timeScale = 2; // Hızı 2x yapıyoruz
+          action.play(); // Animasyonu başlat
+        }
+      });
     } else {
       console.error('Animasyon bulunamadı veya yüklenemedi.');
     }
@@ -25,20 +31,22 @@ function Model() {
 export default function Maskot() {
   return (
     <Canvas
-      camera={{ position: [0, 1.5, 5], fov: 55 }} // Kamera pozisyonu
-      style={{ height: '100vh', width: '40vw' }} // Stil ayarları, geniş alan
+      camera={{ position: [-15, 1.5, -5], fov: 22 }} // Kamera pozisyonu
+      style={{ height: '50vh', width: '40vw' }} // Stil ayarları, geniş alan
     >
-      {/* Genel aydınlatma */}
-      <ambientLight intensity={2.0} />
+      {/* Yumuşak ve yaygın aydınlatma için geniş ambient light */}
+      <ambientLight intensity={0.5} />
 
-      {/* Her taraftan gelen ışık */}
-      <directionalLight position={[10, 10, 10]} intensity={0.5} />
-      <directionalLight position={[-10, 10, 10]} intensity={0.5} />
-      <directionalLight position={[10, -10, 10]} intensity={0.5} />
-      <directionalLight position={[-10, -10, -10]} intensity={0.5} />
+      {/* Üst ve alt geniş homojen ışık için hemisphereLight */}
+      <hemisphereLight color={'white'} groundColor={'gray'} intensity={2.6} position={[-10, 10, 10]} />
+      
+      
 
-      {/* Ek bir spot ışık ekledik */}
-      <spotLight position={[5, 10, 10]} intensity={0.5} />
+      {/* Çok yoğun olmayan, yumuşak directional light'lar */}
+      <directionalLight position={[10, 10, 10]} intensity={0.3} />
+      <directionalLight position={[-10, 10, 10]} intensity={0.3} />
+      <directionalLight position={[10, -10, 10]} intensity={0.3} />
+      <directionalLight position={[-10, -10, -10]} intensity={0.3} />
 
       <Model />
     </Canvas>

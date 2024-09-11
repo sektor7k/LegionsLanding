@@ -8,7 +8,7 @@ import Investor from "@/components/landing-page/Aceternity/Investor";
 import { CompareDemo } from "@/components/landing-page/Aceternity/CompareDemo";
 import { RoadMap } from "@/components/landing-page/Aceternity/RoadMap";
 import { Teams } from "@/components/landing-page/Aceternity/Teams";
-import Three from "@/components/landing-page/Three";
+
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
 
       <CompareDemo/>
       <Investor /> 
-      <Three/>
       <RoadMap />
       <Teams/>
       <JoinWaitlist/>
