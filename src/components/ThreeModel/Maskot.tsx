@@ -32,7 +32,7 @@ export default function Maskot() {
   return (
     <Canvas
       camera={{ position: [-15, 1.5, -5], fov: 22 }} // Kamera pozisyonu
-      style={{ height: '50vh', width: '40vw' }} // Stil ayarları, geniş alan
+      style={{ height: '50vh', width: '100vw' }} // Stil ayarları, geniş alan
     >
       {/* Yumuşak ve yaygın aydınlatma için geniş ambient light */}
       <ambientLight intensity={0.5} />
